@@ -46,6 +46,30 @@ export const AiAssistantModal: React.FC<AiAssistantProps> = ({
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
 
+  if (import.meta.env.MODE === 'github-pages') {
+    return (
+      <div className="max-w-4xl mx-auto py-6 px-4 sm:px-6">
+        <section className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+          <div className="flex items-center gap-2 mb-3">
+            <AlertCircle className="w-5 h-5 text-amber-600 shrink-0" />
+            <h2 className="text-lg font-bold text-slate-900">
+              Asisten AI belum tersedia di GitHub Pages
+            </h2>
+          </div>
+          <p className="text-sm text-slate-600 leading-relaxed">
+            Pembuatan dokumen dengan AI serta transkripsi rekaman atau unggahan audio baru
+            memerlukan server backend. GitHub Pages hanya menyajikan halaman statis,
+            sehingga fitur tersebut belum dapat digunakan pada situs ini.
+          </p>
+          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            Tab Notulensi, Transkrip, Action Items, dan Alur Teknis tetap tersedia.
+            Anda dapat membaca, menyalin, mencetak, dan mengunduh dokumen yang sudah ada.
+          </p>
+        </section>
+      </div>
+    );
+  }
+
   const quickTemplates = [
     {
       label: '📝 Draft Nota Dinas ke Pak Dirjen',
